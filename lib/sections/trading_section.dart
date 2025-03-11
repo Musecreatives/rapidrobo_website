@@ -1,7 +1,7 @@
 import 'dart:ui_web' as ui_web;
 import 'dart:html' as html;
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../widget/cta_button.dart';
 
 class TradingSection extends StatelessWidget {
@@ -102,7 +102,20 @@ class TradingSection extends StatelessWidget {
                       subtext: "Our Team Of Experts Replies Within Minutes",
                       icon: Icons.send,
                       color: Colors.deepPurple,
-                      onPressed: () {},
+                      onPressed: () async {
+                        // Replace with your Telegram channel/profile link
+                        final telegramLink =
+                            Uri.parse('https://t.me/rapidrobosupport');
+
+                        // Check if the Telegram app is installed
+                        if (await canLaunchUrl(telegramLink)) {
+                          await launchUrl(telegramLink,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          // Telegram app not installed, handle accordingly (e.g., show a message)
+                          print('Telegram app not installed');
+                        }
+                      },
                     ),
                     const SizedBox(height: 20),
                     CTAButton(
@@ -110,7 +123,20 @@ class TradingSection extends StatelessWidget {
                       subtext: "Our Team Of Experts Replies Within Minutes",
                       icon: Icons.play_circle_fill,
                       color: Colors.blueAccent,
-                      onPressed: () {},
+                      onPressed: () async {
+                        // Replace with your Telegram channel/profile link
+                        final telegramLink =
+                            Uri.parse('https://t.me/rapidrobo');
+
+                        // Check if the Telegram app is installed
+                        if (await canLaunchUrl(telegramLink)) {
+                          await launchUrl(telegramLink,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          // Telegram app not installed, handle accordingly (e.g., show a message)
+                          print('Telegram app not installed');
+                        }
+                      },
                     ),
                     const SizedBox(height: 20),
                     CTAButton(
@@ -118,7 +144,19 @@ class TradingSection extends StatelessWidget {
                       subtext: "",
                       icon: Icons.phone,
                       color: Colors.blueAccent,
-                      onPressed: () {},
+                      onPressed: () async {
+                        print("CTA button pressed");
+                        // Use the tel: scheme and remove any spaces in the phone number
+                        final Uri phoneUri = Uri.parse("tel:+447784255751");
+                        if (await canLaunchUrl(phoneUri)) {
+                          await launchUrl(
+                            phoneUri,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        } else {
+                          print("Could not launch $phoneUri");
+                        }
+                      },
                     ),
                   ],
                 )
@@ -133,21 +171,59 @@ class TradingSection extends StatelessWidget {
                       subtext: "Our Team Of Experts Replies Within Minutes",
                       icon: Icons.send,
                       color: Colors.deepPurple,
-                      onPressed: () {},
+                      onPressed: () async {
+                        // Replace with your Telegram channel/profile link
+                        final telegramLink =
+                            Uri.parse('https://t.me/rapidrobosupport');
+
+                        // Check if the Telegram app is installed
+                        if (await canLaunchUrl(telegramLink)) {
+                          await launchUrl(telegramLink,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          // Telegram app not installed, handle accordingly (e.g., show a message)
+                          print('Telegram app not installed');
+                        }
+                      },
                     ),
                     CTAButton(
                       text: "Check Our Results - Channel",
                       subtext: "Our Team Of Experts Replies Within Minutes",
                       icon: Icons.play_circle_fill,
                       color: Colors.blueAccent,
-                      onPressed: () {},
+                      onPressed: () async {
+                        // Replace with your Telegram channel/profile link
+                        final telegramLink =
+                            Uri.parse('https://t.me/rapidrobo');
+
+                        // Check if the Telegram app is installed
+                        if (await canLaunchUrl(telegramLink)) {
+                          await launchUrl(telegramLink,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          // Telegram app not installed, handle accordingly (e.g., show a message)
+                          print('Telegram app not installed');
+                        }
+                      },
                     ),
                     CTAButton(
                       text: "Book A Call",
                       subtext: "",
                       icon: Icons.phone,
                       color: Colors.blueAccent,
-                      onPressed: () {},
+                      onPressed: () async {
+                        print("CTA button pressed");
+                        // Use the tel: scheme and remove any spaces in the phone number
+                        final Uri phoneUri = Uri.parse("tel:+447784255751");
+                        if (await canLaunchUrl(phoneUri)) {
+                          await launchUrl(
+                            phoneUri,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        } else {
+                          print("Could not launch $phoneUri");
+                        }
+                      },
                     ),
                   ],
                 )
@@ -160,21 +236,59 @@ class TradingSection extends StatelessWidget {
                       subtext: "Our Team Of Experts Replies Within Minutes",
                       icon: Icons.send,
                       color: Colors.blue,
-                      onPressed: () {},
+                      onPressed: () async {
+                        // Replace with your Telegram channel/profile link
+                        final telegramLink =
+                            Uri.parse('https://t.me/rapidrobosupport');
+
+                        // Check if the Telegram app is installed
+                        if (await canLaunchUrl(telegramLink)) {
+                          await launchUrl(telegramLink,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          // Telegram app not installed, handle accordingly (e.g., show a message)
+                          print('Telegram app not installed');
+                        }
+                      },
                     ),
                     CTAButton(
                       text: "Check Our Results - Channel",
                       subtext: "Our Team Of Experts Replies Within Minutes",
                       icon: Icons.play_circle_fill,
-                      color: Colors.blueAccent,
-                      onPressed: () {},
+                      color: Colors.deepPurpleAccent,
+                      onPressed: () async {
+                        // Replace with your Telegram channel/profile link
+                        final telegramLink =
+                            Uri.parse('https://t.me/rapidrobo');
+
+                        // Check if the Telegram app is installed
+                        if (await canLaunchUrl(telegramLink)) {
+                          await launchUrl(telegramLink,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          // Telegram app not installed, handle accordingly (e.g., show a message)
+                          print('Telegram app not installed');
+                        }
+                      },
                     ),
                     CTAButton(
                       text: "Book A Call",
                       subtext: "",
                       icon: Icons.phone,
                       color: Colors.blueAccent,
-                      onPressed: () {},
+                      onPressed: () async {
+                        print("CTA button pressed");
+                        // Use the tel: scheme and remove any spaces in the phone number
+                        final Uri phoneUri = Uri.parse("tel:+447784255751");
+                        if (await canLaunchUrl(phoneUri)) {
+                          await launchUrl(
+                            phoneUri,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        } else {
+                          print("Could not launch $phoneUri");
+                        }
+                      },
                     ),
                   ],
                 ),

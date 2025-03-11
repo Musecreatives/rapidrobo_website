@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rapidrobo/widget/cta_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -81,36 +82,24 @@ class ContactText extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 30),
-        ElevatedButton.icon(
-          onPressed: () {
-            // Action for messaging
+        CTAButton(
+          text: 'Check Our Results - Channel',
+          subtext: 'Our Team Of Experts Replies Within Minutes',
+          icon: Icons.telegram,
+          color: Colors.blue,
+          onPressed: () async {
+            // Replace with your Telegram channel/profile link
+            final telegramLink = Uri.parse('https://t.me/rapidrobo');
+
+            // Check if the Telegram app is installed
+            if (await canLaunchUrl(telegramLink)) {
+              await launchUrl(telegramLink,
+                  mode: LaunchMode.externalApplication);
+            } else {
+              // Telegram app not installed, handle accordingly (e.g., show a message)
+              print('Telegram app not installed');
+            }
           },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
-          ),
-          icon: const Icon(FontAwesomeIcons.telegram,
-              color: Colors.white, size: 18),
-          label: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Message Our Team Now",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              SizedBox(height: 4),
-              Text(
-                "Our Team Of Experts Reply Within Minutes",
-                style: TextStyle(fontSize: 12, color: Colors.white70),
-              ),
-            ],
-          ),
         ),
       ],
     );

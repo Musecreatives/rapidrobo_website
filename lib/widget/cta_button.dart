@@ -20,9 +20,7 @@ class CTAButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return // CTA Button
         ElevatedButton.icon(
-      onPressed: () {
-        onPressed;
-      },
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         shape: RoundedRectangleBorder(

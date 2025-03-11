@@ -15,16 +15,18 @@ class TestimonialSection extends StatelessWidget {
               ? Column(
                   children: [
                     _buildTestimonialCard(
+                      image: AssetImage('/images/samuel.png'),
                       review:
-                          "I struggled with passing challenges until I found this service. They handled everything efficiently, and now I'm managing a fully funded account.",
-                      name: "Ferris F.",
+                          "I was skeptical at first, but RapidRobo 3.0 proved me wrong! It\npassed my FTMO challenge in record time, and now I’m trading\non a funded account stress-free. The risk management is solid,\nand it adapts well to market conditions. Highly recommend to\nanyone serious about getting funded!",
+                      name: "Samuel",
                       location: "United States",
                     ),
                     const SizedBox(height: 20),
                     _buildTestimonialCard(
+                      image: AssetImage('/images/eoin.png'),
                       review:
                           "Their account management service completely transformed my trading. I no longer stress about risk management, and my funded account is growing steadily.",
-                      name: "Larry S.",
+                      name: "Eoin.",
                       location: "Germany",
                     ),
                   ],
@@ -34,19 +36,25 @@ class TestimonialSection extends StatelessWidget {
                   children: [
                     Expanded(
                       child: _buildTestimonialCard(
+                        image: AssetImage('/images/samuel.png'),
                         review:
-                            "I struggled with passing challenges until I found this service. They handled everything efficiently, and now I'm managing a fully funded account.",
-                        name: "Ferris F.",
-                        location: "United States",
+                            "I was stuck in a cycle of failing prop firm challenges until I found"
+                            "RapidRobo 3.0. It passed both phases of my E8 challenge"
+                            "smoothly. The automation and risk management are top-notch,"
+                            "and customer support was always there to guide me. This is a"
+                            "game-changer!",
+                        name: "Eoin",
+                        location: "Germany",
                       ),
                     ),
                     const SizedBox(width: 20),
                     Expanded(
                       child: _buildTestimonialCard(
+                        image: AssetImage('/images/eoin.png'),
                         review:
-                            "Their account management service completely transformed my trading. I no longer stress about risk management, and my funded account is growing steadily.",
-                        name: "Larry S.",
-                        location: "Germany",
+                            "I was skeptical at first, but RapidRobo 3.0 proved me wrong! It\npassed my FTMO challenge in record time, and now I’m trading\non a funded account stress-free. The risk management is solid,\nand it adapts well to market conditions. Highly recommend to\nanyone serious about getting funded!",
+                        name: "Samuel",
+                        location: "United States",
                       ),
                     ),
                   ],
@@ -60,6 +68,7 @@ class TestimonialSection extends StatelessWidget {
     required String review,
     required String name,
     required String location,
+    required ImageProvider image,
   }) {
     return Container(
       padding: const EdgeInsets.all(15),
@@ -91,13 +100,8 @@ class TestimonialSection extends StatelessWidget {
             children: [
               // Profile Placeholder
               ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  width: 60,
-                  height: 60,
-                  color: Colors.grey[800],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image(image: image)),
               const SizedBox(width: 10),
 
               // User Details

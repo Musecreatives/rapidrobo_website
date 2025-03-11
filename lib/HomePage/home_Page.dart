@@ -51,47 +51,47 @@ class HomePage extends StatelessWidget {
                   // Hero Section
                   const HeroSection(),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   // Trading Section
                   const TradingSection(),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   // Testimonials
                   const TestimonialsSection(),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   // Pass Challenge Section
                   const PassChallengeSection(),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   // Contact Section
                   const ContactSection(),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   // Pick A Passage Section
                   const PickAPassageSection(),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   // Get Account Section
                   const GetAccountSection(),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   // Constant Payouts
                   const ConstantPayouts(),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   // Personal Testimonial Section
                   const TestimonialSection(),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
                   // Footer Section
                   const FooterSection(),

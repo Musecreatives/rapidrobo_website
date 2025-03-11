@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import '../widget/cta_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../widget/herobanner.dart';
 
-class HeroSection extends StatelessWidget {
+class HeroSection extends StatefulWidget {
   const HeroSection({super.key});
 
+  @override
+  State<HeroSection> createState() => _HeroSectionState();
+}
+
+class _HeroSectionState extends State<HeroSection> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -57,14 +63,26 @@ class HeroSection extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Call to Action Button
-            // (Assuming CTAButton is defined in your project)
             CTAButton(
               text: 'Check Our Results - Channel',
               subtext: 'Our Team Of Experts Replies Within Minutes',
               icon: Icons.telegram,
               color: Colors.blue,
-              onPressed: () {},
+              onPressed: () async {
+                // Replace with your Telegram channel/profile link
+                final telegramLink = Uri.parse('https://t.me/rapidrobo');
+
+                // Check if the Telegram app is installed
+                if (await canLaunchUrl(telegramLink)) {
+                  await launchUrl(telegramLink,
+                      mode: LaunchMode.externalApplication);
+                } else {
+                  // Telegram app not installed, handle accordingly (e.g., show a message)
+                  print('Telegram app not installed');
+                }
+              },
             ),
+
             const SizedBox(height: 30),
 
             // Hero Image Icons - Responsive Wrap

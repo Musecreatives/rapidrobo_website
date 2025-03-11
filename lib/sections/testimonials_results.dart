@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../widget/cta_button.dart';
 
@@ -85,25 +85,53 @@ class TestimonialsSection extends StatelessWidget {
           // ✅ Testimonial Cards Layout
           LayoutBuilder(
             builder: (context, constraints) {
-              return constraints.maxWidth > 600
-                  ? const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              bool isMobile = constraints.maxWidth < 700;
+              return isMobile
+                  ? const Column(
                       children: [
-                        Expanded(child: TestimonialCard()),
-                        SizedBox(width: 16),
-                        Expanded(child: TestimonialCard()),
+                        TestimonialCard(
+                          text:
+                              "RapidRobo 3.0 is the real deal! I work full-time and couldn’t afford to sit and trade all day. This bot handled everything and passed my challenge while I focused on other things. If you want a reliable,stress-free way to get funded, this is it!",
+                          name: "Abdullah G.",
+                          rating: "5",
+                          videoUrl: "https://example.com/video.mp4",
+                        ),
+                        SizedBox(height: 20),
+                        TestimonialCard(
+                          text:
+                              "I was stuck in a cycle of failing prop firm challenges until\nI found RapidRobo 3.0. It passed both phases of my E8 I\nchallenge smoothly. The automation and risk\nmanagement are top-notch, and customer support\nwas always there to guide me. This is a game-changer!",
+                          name: "Keith",
+                          rating: "5",
+                          imageUrl: "/images/personal_testimonial.png",
+                        ),
                       ],
                     )
-                  : const Column(
+                  : const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TestimonialCard(),
-                        SizedBox(height: 16),
-                        TestimonialCard(),
+                        Expanded(
+                          child: TestimonialCard(
+                            text:
+                                "RapidRobo 3.0 is the real deal! I work full-time and\ncouldn’t afford to sit and trade all day. This bot\nhandled everything and passed my challenge while\nI focused on other things. If you want a reliable, \nstress-free way to get funded, this is it!",
+                            name: "Ferris F.",
+                            rating: "5",
+                            videoUrl: "https://example.com/video.mp4",
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                        Expanded(
+                          child: TestimonialCard(
+                            text:
+                                "I was stuck in a cycle of failing prop firm challenges until\nI found RapidRobo 3.0. It passed both phases of my E8 I\nchallenge smoothly. The automation and risk\nmanagement are top-notch, and customer support\nwas always there to guide me. This is a game-changer!",
+                            name: "Keith.",
+                            rating: "4",
+                            imageUrl: "/images/personal_testimonial.png",
+                          ),
+                        ),
                       ],
                     );
             },
           ),
-
           const SizedBox(height: 20),
 
           // ✅ Action Buttons
@@ -113,39 +141,46 @@ class TestimonialsSection extends StatelessWidget {
             runSpacing: 10,
             children: [
               // CTA Button
-              ElevatedButton.icon(
-                onPressed: () {
-                  // Action for messaging
+              CTAButton(
+                text: "Message Our Team Now",
+                subtext: "Our Team Of Experts Replies Within Minutes",
+                icon: Icons.send,
+                color: Colors.blueAccent,
+                onPressed: () async {
+                  print("CTA button pressed");
+                  final Uri telegramUrl =
+                      Uri.parse("https://t.me/rapidrobosupport");
+                  if (await canLaunchUrl(telegramUrl)) {
+                    await launchUrl(
+                      telegramUrl,
+                      mode: LaunchMode.platformDefault,
+                      webOnlyWindowName:
+                          '_blank', // Ensures it opens in a new tab on web
+                    );
+                  } else {
+                    print("Could not launch $telegramUrl");
+                  }
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
-                ),
-                icon: const Icon(FontAwesomeIcons.telegram,
-                    color: Colors.white, size: 18),
-                label: const Column(
-                  children: [
-                    Text("Message Our Team Now",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white)),
-                    SizedBox(height: 4),
-                    Text("Our Team Of Experts Reply Within Minutes",
-                        style: TextStyle(fontSize: 12, color: Colors.white70)),
-                  ],
-                ),
               ),
               CTAButton(
                 text: "Check Our Results - channel",
                 subtext: "Our Team Of Expert Replies Within Minutes",
                 icon: Icons.send,
                 color: Colors.blueAccent,
-                onPressed: () {},
+                onPressed: () async {
+                  print("CTA button pressed");
+                  final Uri telegramUrl = Uri.parse("https://t.me/rapidrobo");
+                  if (await canLaunchUrl(telegramUrl)) {
+                    await launchUrl(
+                      telegramUrl,
+                      mode: LaunchMode.platformDefault,
+                      webOnlyWindowName:
+                          '_blank', // Ensures it opens in a new tab on web
+                    );
+                  } else {
+                    print("Could not launch $telegramUrl");
+                  }
+                },
               ),
             ],
           ),
@@ -189,14 +224,61 @@ class ImageCarousel extends StatelessWidget {
   }
 }
 
-// ✅ Testimonial Card Widget with Adjusted Layout
 class TestimonialCard extends StatelessWidget {
-  const TestimonialCard({super.key});
+  /// Either provide a [videoUrl] or an [imageUrl]. One of them must be non-null.
+  const TestimonialCard({
+    Key? key,
+    required this.text,
+    required this.name,
+    required this.rating,
+    this.videoUrl,
+    this.imageUrl,
+  })  : assert(videoUrl != null || imageUrl != null,
+            'Either videoUrl or imageUrl must be provided'),
+        super(key: key);
+
+  final String text;
+  final String name;
+  final String rating;
+  final String? videoUrl;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     bool isTablet = screenWidth > 600;
+
+    // Choose the media widget: if videoUrl is provided, show a video placeholder,
+    // otherwise, display an image.
+    Widget mediaWidget;
+    if (videoUrl != null) {
+      // For video, we use an icon placeholder. You can extend this to a real video player.
+      mediaWidget = Container(
+        height: isTablet ? 180 : 150,
+        width: isTablet ? 180 : 150,
+        decoration: BoxDecoration(
+          color: Colors.grey[800],
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Icon(
+          Icons.play_circle_fill,
+          size: 50,
+          color: Colors.white,
+        ),
+      );
+    } else {
+      mediaWidget = Container(
+        height: isTablet ? 180 : 150,
+        width: isTablet ? 180 : 150,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            image: AssetImage(imageUrl!),
+            fit: BoxFit.cover,
+          ),
+        ),
+      );
+    }
 
     return Container(
       padding: EdgeInsets.all(isTablet ? 20 : 16),
@@ -205,44 +287,38 @@ class TestimonialCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Video Placeholder
-          Container(
-            height: isTablet ? 180 : 150,
-            width: isTablet ? 180 : 150,
-            decoration: BoxDecoration(
-              color: Colors.grey[800],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Icon(Icons.play_circle_fill,
-                size: 50, color: Colors.white),
-          ),
+          // Media widget (video or image)
+          mediaWidget,
           const SizedBox(height: 10),
-          const Text(
-            "• Michael K.",
-            style: TextStyle(
+          // Name
+          Text(
+            name,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 5),
-          const Text(
-            "Michael had the strategy but struggled with execution and timing. "
-            "He partnered with Rapidrobo Trading, where our professional traders "
-            "handled everything for him. With disciplined risk management, he "
-            "passed his challenge and now lets our team grow his funded account.",
-            style: TextStyle(color: Colors.white70),
-            textAlign: TextAlign.center,
+          // Testimonial text
+          Text(
+            text,
+            style: const TextStyle(color: Colors.white70),
+            textAlign: TextAlign.left,
           ),
           const SizedBox(height: 8),
-
-          // Star Ratings
+          // Star Ratings (using the rating string for now, or you could convert it to a number)
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
               5,
-              (index) => const Icon(Icons.star, color: Colors.amber, size: 18),
+              (index) => const Icon(
+                Icons.star,
+                color: Colors.amber,
+                size: 18,
+              ),
             ),
           ),
         ],
