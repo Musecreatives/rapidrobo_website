@@ -36,7 +36,7 @@ class TestimonialSection extends StatelessWidget {
                   children: [
                     Expanded(
                       child: _buildTestimonialCard(
-                        image: AssetImage('/images/samuel.png'),
+                        image: AssetImage('/images/eoin.png'),
                         review:
                             "I was stuck in a cycle of failing prop firm challenges until I found"
                             "RapidRobo 3.0. It passed both phases of my E8 challenge"
@@ -50,7 +50,7 @@ class TestimonialSection extends StatelessWidget {
                     const SizedBox(width: 20),
                     Expanded(
                       child: _buildTestimonialCard(
-                        image: AssetImage('/images/eoin.png'),
+                        image: AssetImage('/images/samuel.png'),
                         review:
                             "I was skeptical at first, but RapidRobo 3.0 proved me wrong! It\npassed my FTMO challenge in record time, and now I’m trading\non a funded account stress-free. The risk management is solid,\nand it adapts well to market conditions. Highly recommend to\nanyone serious about getting funded!",
                         name: "Samuel",

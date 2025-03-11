@@ -25,77 +25,80 @@ class HomePage extends StatelessWidget {
       body: LayoutBuilder(
         builder: (context, constraints) {
           double width = constraints.maxWidth;
-
-          return SingleChildScrollView(
+          return Scrollbar(
             controller: controller.scrollController,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: width > 1000
-                    ? 80
-                    : width > 600
-                        ? 40
-                        : 20,
-                vertical: 20,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // Navbar
-                  Container(
-                    alignment: Alignment.center,
-                    child: NavBar(controller: controller),
-                  ),
+            thumbVisibility: true, // Forces the scrollbar to be visible
+            child: SingleChildScrollView(
+              controller: controller.scrollController,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: width > 1000
+                      ? 80
+                      : width > 600
+                          ? 40
+                          : 20,
+                  vertical: 20,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Navbar
+                    Container(
+                      alignment: Alignment.center,
+                      child: NavBar(controller: controller),
+                    ),
 
-                  SizedBox(height: width > 1000 ? 60 : 30),
+                    SizedBox(height: width > 1000 ? 60 : 30),
 
-                  // Hero Section
-                  const HeroSection(),
+                    // Hero Section
+                    const HeroSection(),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  // Trading Section
-                  const TradingSection(),
+                    // Trading Section
+                    const TradingSection(),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  // Testimonials
-                  const TestimonialsSection(),
+                    // Testimonials
+                    const TestimonialsSection(),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  // Pass Challenge Section
-                  const PassChallengeSection(),
+                    // Pass Challenge Section
+                    const PassChallengeSection(),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  // Contact Section
-                  const ContactSection(),
+                    // Contact Section
+                    const ContactSection(),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  // Pick A Passage Section
-                  const PickAPassageSection(),
+                    // Pick A Passage Section
+                    const PickAPassageSection(),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  // Get Account Section
-                  const GetAccountSection(),
+                    // Get Account Section
+                    const GetAccountSection(),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  // Constant Payouts
-                  const ConstantPayouts(),
+                    // Constant Payouts
+                    const ConstantPayouts(),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  // Personal Testimonial Section
-                  const TestimonialSection(),
+                    // Personal Testimonial Section
+                    const TestimonialSection(),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  // Footer Section
-                  const FooterSection(),
-                ],
+                    // Footer Section
+                    const FooterSection(),
+                  ],
+                ),
               ),
             ),
           );
