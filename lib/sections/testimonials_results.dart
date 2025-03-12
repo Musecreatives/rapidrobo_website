@@ -116,7 +116,7 @@ class TestimonialsSection extends StatelessWidget {
                         Expanded(
                           child: TestimonialCard(
                             text:
-                                "RapidRobo 3.0 is the real deal! I work full-time and\ncouldn’t afford to sit and trade all day. This bot\nhandled everything and passed my challenge while\nI focused on other things. If you want a reliable, \nstress-free way to get funded, this is it!",
+                                "RapidRobo 3.0 is the real deal! I work full-time and couldn’t afford to sit and trade all day. This bot handled everything and passed my challenge while I focused on other things. If you want a reliable, stress-free way to get funded, this is it!",
                             name: "Abdullah G.",
                             rating: "5",
                             videoUrl:
@@ -127,7 +127,7 @@ class TestimonialsSection extends StatelessWidget {
                         Expanded(
                           child: TestimonialCard(
                             text:
-                                "I was stuck in a cycle of failing prop firm challenges until\nI found RapidRobo 3.0. It passed both phases of my E8 I\nchallenge smoothly. The automation and risk\nmanagement are top-notch, and customer support\nwas always there to guide me. This is a game-changer!",
+                                "I was stuck in a cycle of failing prop firm challenges until I found RapidRobo 3.0. It passed both phases of my E8 I challenge smoothly. The automation and risk management are top-notch, and customer support was always there to guide me. This is a game-changer!",
                             name: "Keith.",
                             rating: "4",
                             imageUrl: "assets/images/personal_testimonial.png",
