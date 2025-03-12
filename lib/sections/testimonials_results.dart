@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rapidrobo/widget/image_caurosel.dart';
+import 'package:rapidrobo/widget/testimonial_card.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../widget/cta_button.dart';
 
 class TestimonialsSection extends StatelessWidget {
@@ -95,7 +97,8 @@ class TestimonialsSection extends StatelessWidget {
                               "RapidRobo 3.0 is the real deal! I work full-time and couldn’t afford to sit and trade all day. This bot handled everything and passed my challenge while I focused on other things. If you want a reliable,stress-free way to get funded, this is it!",
                           name: "Abdullah G.",
                           rating: "5",
-                          videoUrl: "https://example.com/video.mp4",
+                          videoUrl:
+                              "https://youtube.com/shorts/J5yioLXTxQs?si=BG3TybpqxsAosV92",
                         ),
                         SizedBox(height: 20),
                         TestimonialCard(
@@ -114,9 +117,10 @@ class TestimonialsSection extends StatelessWidget {
                           child: TestimonialCard(
                             text:
                                 "RapidRobo 3.0 is the real deal! I work full-time and\ncouldn’t afford to sit and trade all day. This bot\nhandled everything and passed my challenge while\nI focused on other things. If you want a reliable, \nstress-free way to get funded, this is it!",
-                            name: "Ferris F.",
+                            name: "Abdullah G.",
                             rating: "5",
-                            videoUrl: "https://example.com/video.mp4",
+                            videoUrl:
+                                "https://www.youtube.com/watch?v=Uwmp16aSgdk",
                           ),
                         ),
                         SizedBox(width: 20),
@@ -192,138 +196,3 @@ class TestimonialsSection extends StatelessWidget {
 }
 
 // ✅ Image Carousel Widget with Responsive Size
-class ImageCarousel extends StatelessWidget {
-  final List<String> imageList;
-
-  const ImageCarousel({super.key, required this.imageList});
-
-  @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    bool isTablet = screenWidth > 600;
-    bool isMobile = screenWidth < 400;
-
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: isTablet ? 500 : (isMobile ? 250 : 350),
-        autoPlay: true,
-        enlargeCenterPage: true,
-        aspectRatio: isTablet ? 16 / 8 : 16 / 9,
-        viewportFraction: isMobile ? 0.9 : 0.8,
-      ),
-      items: imageList.map((imagePath) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.asset(
-            imagePath,
-            fit: BoxFit.contain,
-            width: double.infinity,
-          ),
-        );
-      }).toList(),
-    );
-  }
-}
-
-class TestimonialCard extends StatelessWidget {
-  /// Either provide a [videoUrl] or an [imageUrl]. One of them must be non-null.
-  const TestimonialCard({
-    Key? key,
-    required this.text,
-    required this.name,
-    required this.rating,
-    this.videoUrl,
-    this.imageUrl,
-  })  : assert(videoUrl != null || imageUrl != null,
-            'Either videoUrl or imageUrl must be provided'),
-        super(key: key);
-
-  final String text;
-  final String name;
-  final String rating;
-  final String? videoUrl;
-  final String? imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    bool isTablet = screenWidth > 600;
-
-    // Choose the media widget: if videoUrl is provided, show a video placeholder,
-    // otherwise, display an image.
-    Widget mediaWidget;
-    if (videoUrl != null) {
-      // For video, we use an icon placeholder. You can extend this to a real video player.
-      mediaWidget = Container(
-        height: isTablet ? 180 : 150,
-        width: isTablet ? 180 : 150,
-        decoration: BoxDecoration(
-          color: Colors.grey[800],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: const Icon(
-          Icons.play_circle_fill,
-          size: 50,
-          color: Colors.white,
-        ),
-      );
-    } else {
-      mediaWidget = Container(
-        height: isTablet ? 180 : 150,
-        width: isTablet ? 180 : 150,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          image: DecorationImage(
-            image: AssetImage(imageUrl!),
-            fit: BoxFit.cover,
-          ),
-        ),
-      );
-    }
-
-    return Container(
-      padding: EdgeInsets.all(isTablet ? 20 : 16),
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Media widget (video or image)
-          mediaWidget,
-          const SizedBox(height: 10),
-          // Name
-          Text(
-            name,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 5),
-          // Testimonial text
-          Text(
-            text,
-            style: const TextStyle(color: Colors.white70),
-            textAlign: TextAlign.left,
-          ),
-          const SizedBox(height: 8),
-          // Star Ratings (using the rating string for now, or you could convert it to a number)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              5,
-              (index) => const Icon(
-                Icons.star,
-                color: Colors.amber,
-                size: 18,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
