@@ -19,6 +19,9 @@ class RapidRoboWeb extends StatelessWidget {
               HeaderSection(),
               VideoSection(),
               PartnersSection(),
+              SizedBox(
+                height: 30,
+              ),
               InfoSection(),
               RewardSection(),
               ReviewSection(),
@@ -53,6 +56,7 @@ class HeaderSection extends StatelessWidget {
               style: GoogleFonts.montserrat(
                 fontSize: titleFontSize,
                 color: Colors.blue,
+                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(height: spacing / 2),
@@ -61,6 +65,7 @@ class HeaderSection extends StatelessWidget {
               textAlign: TextAlign.center,
               style: GoogleFonts.montserrat(
                 fontSize: subtitleFontSize,
+                fontWeight: FontWeight.w500,
                 color: Colors.blue,
               ),
             ),
@@ -141,9 +146,10 @@ class VideoSection extends StatelessWidget {
                   else
                     const SizedBox(height: 20),
                   CustomButton(
-                    text: "Check Our Results",
-                    icon: Icons.play_circle_fill,
-                    color: Colors.deepPurpleAccent,
+                    textColor: Colors.black,
+                    text: "Free Telegram",
+                    icon: Icons.telegram,
+                    color: Colors.white,
                     onPressed: () => _launchURL("https://t.me/rapidrobo"),
                   ),
                 ],
@@ -171,12 +177,14 @@ class CustomButton extends StatelessWidget {
   final IconData icon;
   final Color color;
   final VoidCallback onPressed;
+  final Color textColor;
 
   const CustomButton({
     required this.text,
     required this.icon,
     required this.color,
     required this.onPressed,
+    this.textColor = Colors.white, // Default text color is white
     super.key,
   });
 
@@ -184,11 +192,12 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       onPressed: onPressed,
-      icon: Icon(icon, color: Colors.white),
+      icon: Icon(icon, color: textColor),
       label: Text(text,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          style: TextStyle(
+              fontSize: 16, fontWeight: FontWeight.bold, color: textColor)),
       style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
+        foregroundColor: textColor,
         backgroundColor: color,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -207,7 +216,11 @@ class PartnersSection extends StatelessWidget {
         children: [
           Text(
             "We Partner With Top Prop Firms & Brokers",
-            style: GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
+            style: GoogleFonts.montserrat(
+              fontSize: 40,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
@@ -215,20 +228,28 @@ class PartnersSection extends StatelessWidget {
             builder: (context, constraints) {
               if (constraints.maxWidth > 800) {
                 // For large screens, use the original row layout.
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Image.asset('assets/icons/icon_1.png', height: 200),
-                        Image.asset('assets/icons/icon_2.png', height: 200),
+                        Image.asset('assets/icons/icon_1.png', height: 50),
+                        Image.asset('assets/icons/icon_2.png', height: 50),
                       ],
                     ),
-                    Image.asset('assets/icons/icon_3.png', height: 200),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Image.asset('assets/icons/icon_3.png', height: 50),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Image.asset('assets/icons/icon_4.png', height: 200),
-                        Image.asset('assets/icons/icon_5.png', height: 200),
+                        Image.asset('assets/icons/icon_4.png', height: 50),
+                        Image.asset('assets/icons/icon_5.png', height: 50),
                       ],
                     ),
                   ],
@@ -240,11 +261,11 @@ class PartnersSection extends StatelessWidget {
                   spacing: 20,
                   runSpacing: 20,
                   children: [
-                    Image.asset('assets/icons/icon_1.png', height: 120),
-                    Image.asset('assets/icons/icon_2.png', height: 120),
-                    Image.asset('assets/icons/icon_3.png', height: 120),
-                    Image.asset('assets/icons/icon_4.png', height: 120),
-                    Image.asset('assets/icons/icon_5.png', height: 120),
+                    Image.asset('assets/icons/icon_1.png', height: 50),
+                    Image.asset('assets/icons/icon_2.png', height: 50),
+                    Image.asset('assets/icons/icon_3.png', height: 50),
+                    Image.asset('assets/icons/icon_4.png', height: 50),
+                    Image.asset('assets/icons/icon_5.png', height: 50),
                   ],
                 );
               }
@@ -259,48 +280,62 @@ class PartnersSection extends StatelessWidget {
 class InfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 600,
-      color: Colors.blue,
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          Row(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double width = constraints.maxWidth;
+        bool isMobile = width < 600;
+
+        return Container(
+          padding: const EdgeInsets.all(20),
+          color: Colors.blue,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                flex: 1,
-                child: Image.asset('assets/images/Laptop.png', height: 500),
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        "What is RapidRobo EA?",
-                        textAlign: TextAlign.left,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 30, color: Colors.white),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Rapidrobo 3.0 scans the market in real-time, Create a signal and execute a trade with take profit and stop loss on your Behalf. 99% of traders fail trying to trade manually, automated Rapidrobo trading is the way to go!!!",
-                        textAlign: TextAlign.left,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 20, color: Colors.white70),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              if (!isMobile)
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child:
+                          Image.asset('assets/images/Laptop.png', height: 400),
+                    ),
+                    SizedBox(width: 20),
+                    Expanded(
+                      flex: 2,
+                      child: _buildTextContent(),
+                    ),
+                  ],
+                )
+              else
+                _buildTextContent(), // Show only text on mobile
             ],
           ),
-        ],
-      ),
+        );
+      },
+    );
+  }
+
+  Widget _buildTextContent() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "What is RapidRobo EA?",
+          style: GoogleFonts.montserrat(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        SizedBox(height: 15),
+        Text(
+          "Rapidrobo 3.0 scans the market in real-time, creates a signal, and executes trades with take profit and stop loss on your behalf. 99% of traders fail trying to trade manually—automated Rapidrobo trading is the way to go!",
+          style: GoogleFonts.montserrat(
+            fontSize: 18,
+            color: Colors.white70,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -312,10 +347,6 @@ class RewardSection extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          Text(
-            "FTMO REWARD",
-            style: GoogleFonts.montserrat(fontSize: 20, color: Colors.white),
-          ),
           SizedBox(height: 10),
           Column(
             children: [
