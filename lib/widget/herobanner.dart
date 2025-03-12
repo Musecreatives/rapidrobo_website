@@ -12,8 +12,8 @@ class HeroImageCard extends StatelessWidget {
       child: Image.asset(
         imagePath,
         width: 80,
-        height: 60,
-        fit: BoxFit.cover,
+        height: 80,
+        fit: BoxFit.contain,
       ),
     );
   }

@@ -141,7 +141,7 @@ class TradingSection extends StatelessWidget {
                     const SizedBox(height: 20),
                     CTAButton(
                       text: "Book A Call",
-                      subtext: "",
+                      subtext: "Contact us now",
                       icon: Icons.phone,
                       color: Colors.blueAccent,
                       onPressed: () async {
@@ -208,7 +208,7 @@ class TradingSection extends StatelessWidget {
                     ),
                     CTAButton(
                       text: "Book A Call",
-                      subtext: "",
+                      subtext: "Contact us now",
                       icon: Icons.phone,
                       color: Colors.blueAccent,
                       onPressed: () async {
@@ -273,7 +273,7 @@ class TradingSection extends StatelessWidget {
                     ),
                     CTAButton(
                       text: "Book A Call",
-                      subtext: "",
+                      subtext: "Contact us now",
                       icon: Icons.phone,
                       color: Colors.blueAccent,
                       onPressed: () async {
