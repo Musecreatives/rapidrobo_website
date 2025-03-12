@@ -36,8 +36,8 @@ class ConstantPayouts extends StatelessWidget {
                           child: Image.asset(
                             "assets/images/phone_2.png",
                             fit: BoxFit.contain,
-                            height: 600,
-                            width: 620,
+                            height: 500,
+                            width: 520,
                           ),
                         ),
                         const SizedBox(width: 50),
