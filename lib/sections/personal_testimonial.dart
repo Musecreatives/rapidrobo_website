@@ -17,7 +17,7 @@ class TestimonialSection extends StatelessWidget {
                     _buildTestimonialCard(
                       image: AssetImage('assets/images/samuel.png'),
                       review:
-                          "I was skeptical at first, but RapidRobo 3.0 proved me wrong! It\npassed my FTMO challenge in record time, and now I’m trading\non a funded account stress-free. The risk management is solid,\nand it adapts well to market conditions. Highly recommend to\nanyone serious about getting funded!",
+                          "I was skeptical at first, but RapidRobo 3.0 proved me wrong! It passed my FTMO challenge in record time, and now I’m trading on a funded account stress-free. The risk management is solid, and it adapts well to market conditions. Highly recommend to anyone serious about getting funded!",
                       name: "Samuel",
                       location: "United States",
                     ),
@@ -38,11 +38,7 @@ class TestimonialSection extends StatelessWidget {
                       child: _buildTestimonialCard(
                         image: AssetImage('assets/images/eoin.png'),
                         review:
-                            "I was stuck in a cycle of failing prop firm challenges until I found"
-                            "RapidRobo 3.0. It passed both phases of my E8 challenge"
-                            "smoothly. The automation and risk management are top-notch,"
-                            "and customer support was always there to guide me. This is a"
-                            "game-changer!",
+                            "I was stuck in a cycle of failing prop firm challenges until I found RapidRobo 3.0. It passed both phases of my E8 challenge smoothly. The automation and risk management are top-notch, and customer support was always there to guide me. This is a game-changer!",
                         name: "Eoin",
                         location: "Germany",
                       ),
@@ -52,7 +48,7 @@ class TestimonialSection extends StatelessWidget {
                       child: _buildTestimonialCard(
                         image: AssetImage('assets/images/samuel.png'),
                         review:
-                            "I was skeptical at first, but RapidRobo 3.0 proved me wrong! It\npassed my FTMO challenge in record time, and now I’m trading\non a funded account stress-free. The risk management is solid,\nand it adapts well to market conditions. Highly recommend to\nanyone serious about getting funded!",
+                            "I was skeptical at first, but RapidRobo 3.0 proved me wrong! It passed my FTMO challenge in record time, and now I’m trading on a funded account stress-free. The risk management is solid, and it adapts well to market conditions. Highly recommend to anyone serious about getting funded!",
                         name: "Samuel",
                         location: "United States",
                       ),

@@ -80,12 +80,6 @@ class PassChallengeSection extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 5),
-
-                    // Subtitle under button
-                    const Text(
-                      "Our Team of Experts Replies Within Minutes",
-                      style: TextStyle(color: Colors.white54, fontSize: 14),
-                    ),
                   ],
                 ),
               ),
