@@ -11,8 +11,7 @@ class HeroImageCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: Image.asset(
         imagePath,
-        width: 80,
-        height: 80,
+        height: 50,
         fit: BoxFit.contain,
       ),
     );

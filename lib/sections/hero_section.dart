@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../widget/cta_button.dart';
 import 'package:url_launcher/url_launcher.dart';

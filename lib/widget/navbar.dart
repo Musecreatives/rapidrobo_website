@@ -44,12 +44,12 @@ class _NavBarState extends State<NavBar> {
                       if (!isMobile)
                         Row(
                           children: [
-                            NavItem("Contact Us", 1200, widget.controller),
+                            NavItem("Contact Us", 5000, widget.controller),
                             const SizedBox(height: 10),
-                            NavItem("Testimonials", 1800, widget.controller),
+                            NavItem("Testimonials", 1600, widget.controller),
                             const SizedBox(height: 10),
                             NavItem(
-                                "Join Free Channel", 2000, widget.controller),
+                                "Join Free Channel", 800, widget.controller),
                             const SizedBox(height: 10),
                             NavItemPage(
                                 "RapidRobo EA"), // New item for navigation
@@ -78,11 +78,11 @@ class _NavBarState extends State<NavBar> {
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Column(
                   children: [
-                    NavItem("Contact Us", 1200, widget.controller),
+                    NavItem("Contact Us", 5000, widget.controller),
                     const SizedBox(height: 10),
-                    NavItem("Testimonials", 1800, widget.controller),
+                    NavItem("Testimonials", 1600, widget.controller),
                     const SizedBox(height: 10),
-                    NavItem("Join Free Channel", 2000, widget.controller),
+                    NavItem("Join Free Channel", 800, widget.controller),
                     const SizedBox(height: 10),
                     NavItemPage("RapidRobo EA"), // New item for navigation
                   ],
