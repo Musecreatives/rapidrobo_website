@@ -32,7 +32,7 @@ class PassChallengeSection extends StatelessWidget {
                       text: const TextSpan(
                         children: [
                           TextSpan(
-                            text: "Pass the Challenge or Pay Nothing - ",
+                            text: "Pass your Challenge or Pay Nothing - ",
                             style: TextStyle(
                                 fontSize: 22,
                                 color: Colors.white,

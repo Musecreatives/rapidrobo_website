@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rapidrobo/widget/cta_button.dart';
 import 'package:rapidrobo/widget/image_caurosel.dart';
@@ -34,54 +35,115 @@ class RapidRoboWeb extends StatelessWidget {
   }
 }
 
-class HeaderSection extends StatelessWidget {
+class HeaderSection extends StatefulWidget {
+  @override
+  _HeaderSectionState createState() => _HeaderSectionState();
+}
+
+class _HeaderSectionState extends State<HeaderSection>
+    with SingleTickerProviderStateMixin {
+  double _opacity = 0;
+  double _padding = 40;
+
+  @override
+  void initState() {
+    super.initState();
+    // Trigger animation after build
+    Future.delayed(Duration(milliseconds: 300), () {
+      setState(() {
+        _opacity = 1;
+        _padding = 20;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      // Define breakpoints and responsive values
       bool isMobile = constraints.maxWidth < 600;
       double logoHeight = isMobile ? 60 : 80;
       double titleFontSize = isMobile ? 24 : 30;
       double subtitleFontSize = isMobile ? 18 : 25;
       double spacing = isMobile ? 10 : 20;
 
-      return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Image.asset('assets/icons/logo_icon.png', height: logoHeight),
-            SizedBox(height: spacing / 2),
-            Text(
-              "RAPIDROBOEA",
-              style: GoogleFonts.montserrat(
-                fontSize: titleFontSize,
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
+      return AnimatedPadding(
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+        padding: EdgeInsets.all(_padding),
+        child: AnimatedOpacity(
+          duration: Duration(milliseconds: 700),
+          opacity: _opacity,
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 400),
+                  curve: Curves.easeOut,
+                  height: logoHeight,
+                  child: Image.asset('assets/icons/logo_icon.png'),
+                ),
               ),
-            ),
-            SizedBox(height: spacing / 2),
-            Text(
-              "Passes FTMO Accounts, Get Payout And Use On Your Personal Accounts!",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.montserrat(
-                fontSize: subtitleFontSize,
-                fontWeight: FontWeight.w500,
-                color: Colors.blue,
+              SizedBox(height: spacing / 2),
+              Text(
+                "RAPIDROBOEA",
+                style: GoogleFonts.montserrat(
+                  fontSize: titleFontSize,
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+              SizedBox(height: spacing / 2),
+              Text(
+                "Passes FTMO Accounts, Get Payout And Use On Your Personal Accounts!",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.montserrat(
+                  fontSize: subtitleFontSize,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.blue,
+                ),
+              ),
+            ],
+          ),
         ),
       );
     });
   }
 }
 
-class VideoSection extends StatelessWidget {
-  const VideoSection({super.key});
+class VideoSection extends StatefulWidget {
+  @override
+  _VideoSectionState createState() => _VideoSectionState();
+}
+
+class _VideoSectionState extends State<VideoSection>
+    with SingleTickerProviderStateMixin {
+  double _opacity = 0;
+  double _scale = 0.8;
+  double _buttonOpacity = 0;
 
   @override
-  Widget build(BuildContext context) {
-    // Register YouTube IFrame for Flutter Web
+  void initState() {
+    super.initState();
+
+    // Trigger animations after the widget is built
+    Future.delayed(Duration(milliseconds: 300), () {
+      setState(() {
+        _opacity = 1;
+        _scale = 1.0;
+      });
+    });
+
+    // Slight delay for button animation
+    Future.delayed(Duration(milliseconds: 700), () {
+      setState(() {
+        _buttonOpacity = 1;
+      });
+    });
+
+    // Register YouTube iFrame for Web
     ui_web.platformViewRegistry.registerViewFactory(
       'youtube-iframe',
       (int viewId) {
@@ -91,71 +153,119 @@ class VideoSection extends StatelessWidget {
           ..src =
               'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video link
           ..style.border = 'none'
+          ..allow =
+              'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
           ..allowFullscreen = true;
+
         return iframe;
       },
     );
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         double width = constraints.maxWidth;
         bool isMobile = width < 600;
-        bool isTablet = width >= 600 && width < 1000;
 
-        return Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: isMobile ? 20 : 40, vertical: 40),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Video Container
-              Container(
-                width: isMobile ? width * 0.9 : 600,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blueAccent, width: 3),
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
+        return AnimatedOpacity(
+          duration: Duration(milliseconds: 700),
+          opacity: _opacity,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 20 : 40, vertical: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Video Container with Animation
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeOut,
+                  transform: Matrix4.diagonal3Values(_scale, _scale, 1),
+                  width: isMobile ? width * 0.9 : 600,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.blueAccent, width: 2),
+                    boxShadow: [
+                      BoxShadow(
                         color: Colors.black26,
                         blurRadius: 8,
-                        offset: Offset(0, 4))
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  padding: const EdgeInsets.all(10),
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: HtmlElementView(viewType: 'youtube-iframe'),
+                  ),
+                ),
+
+                const SizedBox(height: 30),
+
+                // Animated Buttons
+                AnimatedOpacity(
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeOut,
+                  opacity: _buttonOpacity,
+                  child: buildCTAButtons(isMobile),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget buildCTAButtons(bool isMobile) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SizedBox(
+          width: constraints.maxWidth > 600
+              ? 400
+              : double.infinity, // Adjust for web
+          child: isMobile
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CustomButton(
+                      text: "Book A Call",
+                      icon: Icons.phone,
+                      color: Colors.blueAccent,
+                      onPressed: () => _launchURL("tel:+447784255751"),
+                    ),
+                    const SizedBox(height: 20),
+                    CustomButton(
+                      textColor: Colors.black,
+                      text: "Free Telegram",
+                      icon: Icons.telegram,
+                      color: Colors.white,
+                      onPressed: () => _launchURL("https://t.me/rapidrobo"),
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomButton(
+                      text: "Book A Call",
+                      textColor: Colors.white,
+                      color: Colors.blueAccent,
+                      icon: Icons.phone,
+                      onPressed: () => _launchURL("tel:+447784255751"),
+                    ),
+                    const SizedBox(width: 20),
+                    CustomButton(
+                      textColor: Colors.black,
+                      text: "Free Telegram",
+                      icon: Icons.telegram,
+                      color: Colors.white,
+                      onPressed: () => _launchURL("https://t.me/rapidrobo"),
+                    ),
                   ],
                 ),
-                padding: const EdgeInsets.all(10),
-                child: const AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: HtmlElementView(viewType: 'youtube-iframe'),
-                ),
-              ),
-              const SizedBox(height: 30),
-
-              // CTA Buttons (Adaptive Layout)
-              Flex(
-                direction: isMobile ? Axis.vertical : Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CustomButton(
-                    text: "Book A Call",
-                    icon: Icons.phone,
-                    color: Colors.blueAccent,
-                    onPressed: () => _launchURL("tel:+447784255751"),
-                  ),
-                  if (!isMobile)
-                    const SizedBox(width: 20)
-                  else
-                    const SizedBox(height: 20),
-                  CustomButton(
-                    textColor: Colors.black,
-                    text: "Free Telegram",
-                    icon: Icons.telegram,
-                    color: Colors.white,
-                    onPressed: () => _launchURL("https://t.me/rapidrobo"),
-                  ),
-                ],
-              ),
-            ],
-          ),
         );
       },
     );
@@ -184,7 +294,7 @@ class CustomButton extends StatelessWidget {
     required this.icon,
     required this.color,
     required this.onPressed,
-    this.textColor = Colors.white, // Default text color is white
+    this.textColor = Colors.white,
     super.key,
   });
 
@@ -195,11 +305,10 @@ class CustomButton extends StatelessWidget {
       icon: Icon(icon, color: textColor),
       label: Text(text,
           style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold, color: textColor)),
+              fontSize: 16, color: textColor, fontWeight: FontWeight.bold)),
       style: ElevatedButton.styleFrom(
-        foregroundColor: textColor,
         backgroundColor: color,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         elevation: 5,
       ),
@@ -207,72 +316,114 @@ class CustomButton extends StatelessWidget {
   }
 }
 
-class PartnersSection extends StatelessWidget {
+class PartnersSection extends StatefulWidget {
+  @override
+  _PartnersSectionState createState() => _PartnersSectionState();
+}
+
+class _PartnersSectionState extends State<PartnersSection>
+    with SingleTickerProviderStateMixin {
+  double _opacity = 0;
+  List<double> _scales = [0.8, 0.8, 0.8, 0.8, 0.8];
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Fade-in and scale animations
+    Future.delayed(Duration(milliseconds: 300), () {
+      setState(() {
+        _opacity = 1.0;
+      });
+    });
+
+    // Staggered scaling animation for logos
+    for (int i = 0; i < _scales.length; i++) {
+      Future.delayed(Duration(milliseconds: 500 + (i * 200)), () {
+        setState(() {
+          _scales[i] = 1.0;
+        });
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          Text(
-            "We Partner With Top Prop Firms & Brokers",
-            style: GoogleFonts.montserrat(
-              fontSize: 40,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+    return AnimatedOpacity(
+      duration: Duration(milliseconds: 700),
+      opacity: _opacity,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Text(
+              "We Partner With Top Prop Firms & Brokers",
+              style: GoogleFonts.montserrat(
+                fontSize: 40,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 20),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              if (constraints.maxWidth > 800) {
-                // For large screens, use the original row layout.
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset('assets/icons/icon_1.png', height: 50),
-                        Image.asset('assets/icons/icon_2.png', height: 50),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Image.asset('assets/icons/icon_3.png', height: 50),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset('assets/icons/icon_4.png', height: 50),
-                        Image.asset('assets/icons/icon_5.png', height: 50),
-                      ],
-                    ),
-                  ],
+            const SizedBox(height: 20),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                bool isLargeScreen = constraints.maxWidth > 800;
+
+                return AnimatedSwitcher(
+                  duration: Duration(milliseconds: 500),
+                  child: isLargeScreen
+                      ? _buildLargeScreenLayout()
+                      : _buildSmallScreenLayout(),
                 );
-              } else {
-                // For smaller screens, use a wrap layout.
-                return Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: 20,
-                  runSpacing: 20,
-                  children: [
-                    Image.asset('assets/icons/icon_1.png', height: 50),
-                    Image.asset('assets/icons/icon_2.png', height: 50),
-                    Image.asset('assets/icons/icon_3.png', height: 50),
-                    Image.asset('assets/icons/icon_4.png', height: 50),
-                    Image.asset('assets/icons/icon_5.png', height: 50),
-                  ],
-                );
-              }
-            },
-          ),
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLargeScreenLayout() {
+    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildAnimatedLogo('assets/icons/icon_1.png', 0),
+          _buildAnimatedLogo('assets/icons/icon_2.png', 1),
         ],
       ),
+      const SizedBox(height: 20),
+      _buildAnimatedLogo('assets/icons/icon_3.png', 2),
+      const SizedBox(height: 20),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildAnimatedLogo('assets/icons/icon_4.png', 3),
+          _buildAnimatedLogo('assets/icons/icon_5.png', 4),
+        ],
+      )
+    ]);
+  }
+
+  Widget _buildSmallScreenLayout() {
+    return Wrap(
+      spacing: 20,
+      runSpacing: 20,
+      alignment: WrapAlignment.center,
+      children: [
+        for (int i = 0; i < 5; i++)
+          _buildAnimatedLogo('assets/icons/icon_${i + 1}.png', i),
+      ],
+    );
+  }
+
+  Widget _buildAnimatedLogo(String assetPath, int index) {
+    return AnimatedScale(
+      scale: _scales[index],
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeOut,
+      child: Image.asset(assetPath, height: 50),
     );
   }
 }
