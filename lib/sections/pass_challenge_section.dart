@@ -63,7 +63,7 @@ class PassChallengeSection extends StatelessWidget {
                       text: "Buy RapidRobo",
                       subtext: "Get RapidRobo now",
                       icon: Icons.send,
-                      color: Colors.deepPurple.shade400,
+                      color: Colors.deepPurple,
                       onPressed: () async {
                         // Replace with your Telegram channel/profile link
                         final telegramLink = Uri.parse(
