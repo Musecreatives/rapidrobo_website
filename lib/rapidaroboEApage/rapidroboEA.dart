@@ -179,7 +179,8 @@ class _VideoSectionState extends State<VideoSection>
         final html.IFrameElement iframe = html.IFrameElement()
           ..width = '100%'
           ..height = '100%'
-          ..src = 'https://www.youtube.com/watch?v=8-8iK4grHIE'
+          ..src =
+              'https://www.youtube.com/embed/8-8iK4grHIE?si=UH7yzpPqyXe4WxcX'
           ..style.border = 'none'
           ..allow =
               'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
