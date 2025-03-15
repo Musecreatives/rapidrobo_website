@@ -1,22 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rapidrobo/widget/cta_button.dart';
 import 'package:rapidrobo/widget/image_caurosel.dart';
 import 'dart:ui_web' as ui_web;
 import 'dart:html' as html;
 import 'package:url_launcher/url_launcher.dart';
 
+import '../HomePage/home_Controller.dart';
+import '../widget/navbar.dart';
+
 class RapidRoboWeb extends StatelessWidget {
+  final HomeController controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.black,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: LayoutBuilder(builder: (context, constraints) {
+        double width = constraints.maxWidth;
+        return SingleChildScrollView(
           child: Column(
             children: [
+              // Navbar
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: width > 1000
+                      ? 80
+                      : width > 600
+                          ? 40
+                          : 20,
+                  vertical: 20,
+                ),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: NavBar(controller: controller),
+                ),
+              ),
+              SizedBox(height: width > 1000 ? 60 : 30),
               HeaderSection(),
               VideoSection(),
               PartnersSection(),
@@ -25,12 +44,22 @@ class RapidRoboWeb extends StatelessWidget {
               ),
               InfoSection(),
               RewardSection(),
-              ReviewSection(),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: width > 1000
+                      ? 80
+                      : width > 600
+                          ? 40
+                          : 20,
+                  vertical: 20,
+                ),
+                child: ReviewSection(),
+              ),
               FooterSection(),
             ],
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
@@ -150,8 +179,7 @@ class _VideoSectionState extends State<VideoSection>
         final html.IFrameElement iframe = html.IFrameElement()
           ..width = '100%'
           ..height = '100%'
-          ..src =
-              'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video link
+          ..src = 'https://www.youtube.com/watch?v=8-8iK4grHIE'
           ..style.border = 'none'
           ..allow =
               'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

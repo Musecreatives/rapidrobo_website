@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../HomePage/home_Page.dart';
+
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
 
@@ -22,9 +24,23 @@ class FooterSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              _buildFooterLink("Home", () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          HomePage()), // Navigate to AboutPage
+                );
+              }),
+              SizedBox(
+                width: 10,
+              ),
               _buildFooterLink("Terms & Conditions", () {
                 // Navigate or show terms
               }),
+              SizedBox(
+                width: 10,
+              ),
               const SizedBox(width: 15),
               _buildFooterLink("Privacy Policy", () {
                 // Navigate or show policy

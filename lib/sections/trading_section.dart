@@ -17,7 +17,7 @@ class TradingSection extends StatelessWidget {
           ..width = '100%'
           ..height = '100%'
           ..src =
-              'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with your video link
+              'https://www.youtube.com/watch?v=8-8iK4grHIE' // Replace with your video link
           ..style.border = 'none'
           ..allowFullscreen = true;
         return iframe;

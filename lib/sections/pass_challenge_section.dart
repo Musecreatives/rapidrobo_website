@@ -60,10 +60,10 @@ class PassChallengeSection extends StatelessWidget {
 
                     // CTA Button
                     CTAButton(
-                      text: "Message Our Team Now",
-                      subtext: "Our Team Of Experts Replies Within Minutes",
+                      text: "Buy RapidRobo",
+                      subtext: "Get RapidRobo now",
                       icon: Icons.send,
-                      color: Colors.blue,
+                      color: Colors.deepPurple.shade400,
                       onPressed: () async {
                         // Replace with your Telegram channel/profile link
                         final telegramLink =

@@ -171,7 +171,7 @@ class TestimonialsSection extends StatelessWidget {
                 text: "Check Our Results - channel",
                 subtext: "Our Team Of Expert Replies Within Minutes",
                 icon: Icons.send,
-                color: Colors.blueAccent,
+                color: Colors.blueAccent.shade700,
                 onPressed: () async {
                   print("CTA button pressed");
                   final Uri telegramUrl = Uri.parse("https://t.me/rapidrobo");
