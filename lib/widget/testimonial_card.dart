@@ -70,7 +70,7 @@ class TestimonialCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
             image: AssetImage(imageUrl!),
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           ),
         ),
       ),

@@ -66,8 +66,8 @@ class PassChallengeSection extends StatelessWidget {
                       color: Colors.deepPurple.shade400,
                       onPressed: () async {
                         // Replace with your Telegram channel/profile link
-                        final telegramLink =
-                            Uri.parse('https://t.me/rapidrobosupport');
+                        final telegramLink = Uri.parse(
+                            'https://tradercentral.co/products/rapidrobo-crypto-bot');
 
                         // Check if the Telegram app is installed
                         if (await canLaunchUrl(telegramLink)) {
