@@ -97,8 +97,7 @@ class TestimonialsSection extends StatelessWidget {
                               "RapidRobo 3.0 is the real deal! I work full-time and couldn’t afford to sit and trade all day. This bot handled everything and passed my challenge while I focused on other things. If you want a reliable,stress-free way to get funded, this is it!",
                           name: "Abdullah G.",
                           rating: "5",
-                          videoUrl:
-                              "https://youtube.com/shorts/J5yioLXTxQs?si=BG3TybpqxsAosV92",
+                          imageUrl: "assets/images/abdullam.jpg",
                         ),
                         SizedBox(height: 20),
                         TestimonialCard(
